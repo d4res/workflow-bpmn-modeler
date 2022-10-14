@@ -7,6 +7,7 @@ export default {
   'bpmn:UserTask': {
     userType: true,
     assignee: true,
+    fakeForm: true,
     candidateUsers: true,
     candidateGroups: true,
     async: true,

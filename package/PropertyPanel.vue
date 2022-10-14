@@ -44,6 +44,7 @@ export default {
   },
   data() {
     return {
+      // element 是我们当前正在修改的BPMN组件
       element: null,
       form: {
         id: '',
@@ -57,6 +58,7 @@ export default {
       ]
     }
   },
+
   computed: {
     getComponent() {
       const type = this.element?.type
@@ -117,9 +119,10 @@ export default {
           })
         }
       })
+      // when we click on a process, we set the corresponding element
       this.modeler.on('element.click', e => {
         const { element } = e
-        console.log(element)
+        // bpmn:Process is the Root
         if (element.type === 'bpmn:Process') {
           this.element = element
         }

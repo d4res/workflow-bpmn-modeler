@@ -56,6 +56,10 @@ export default class BpmData {
       {
         action: 'create.group',
         title: '分组'
+      },
+      {
+        action: 'create.demo',
+        title: '张三任务'
       }
     ]
   }

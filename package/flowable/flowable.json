@@ -244,6 +244,11 @@
             "name": "formKey",
             "isAttr": true,
             "type": "String"
+          },
+          {
+            "name": "fakeForm",
+            "isAttr": true,
+            "type": "String"
           }
         ]
       },

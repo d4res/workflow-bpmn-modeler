@@ -70,8 +70,15 @@ export default {
   watch: {
     'formData.conditionExpression': function(val) {
       if (val) {
+        // 向BPMN注入更新的属性
+
         const newCondition = this.modeler.get('moddle').create('bpmn:FormalExpression', { body: val })
+        // updateProperties(properties) {
+        //   var modeling = this.modeler.get('modeling');
+        //   modeling.updateProperties(this.element, properties);
+        // }
         this.updateProperties({ conditionExpression: newCondition })
+        console.log(this)
       } else {
         this.updateProperties({ conditionExpression: null })
       }

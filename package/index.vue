@@ -1,6 +1,8 @@
 <template>
   <div v-loading="isView" class="flow-containers" :class="{ 'view-mode': isView }">
     <el-container style="height: 100%">
+
+      <!-- header -->
       <el-header style="border-bottom: 1px solid rgb(218 218 218);height: auto;">
         <div style="display: flex; padding: 10px 0px; justify-content: space-between;">
           <div>
@@ -35,10 +37,15 @@
           </div>
         </div>
       </el-header>
+
+      <!-- canvas drawing area and property panel-->
       <el-container style="align-items: stretch">
+        <!-- canvas for drawing BPMN editor -->
         <el-main style="padding: 0;">
           <div ref="canvas" class="canvas" />
         </el-main>
+
+        <!-- property panel -->
         <el-aside style="width: 400px; min-height: 650px; background-color: #f0f2f5">
           <panel v-if="modeler" :modeler="modeler" :users="users" :groups="groups" :categorys="categorys" />
         </el-aside>
@@ -50,13 +57,13 @@
 
 <script>
 // 汉化
-import customTranslate from './common/customTranslate'
 import Modeler from 'bpmn-js/lib/Modeler'
 import panel from './PropertyPanel'
 import BpmData from './BpmData'
 import getInitStr from './flowable/init'
 // 引入flowable的节点文件
 import flowableModdle from './flowable/flowable.json'
+import customModule from './custom'
 export default {
   name: 'WorkflowBpmnModeler',
   components: {
@@ -101,12 +108,13 @@ export default {
   mounted() {
     // 生成实例
     this.modeler = new Modeler({
+      // 绑定对应canvas
       container: this.$refs.canvas,
+      // 添加自定义元素
       additionalModules: [
-        {
-          translate: ['value', customTranslate]
-        }
+        customModule
       ],
+      // 添加自定义属性
       moddleExtensions: {
         flowable: flowableModdle
       }

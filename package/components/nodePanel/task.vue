@@ -237,12 +237,22 @@ export default {
             name: 'dueDate',
             label: '到期时间',
             show: !!_this.showConfig.dueDate
+          },
+          {
+            xType: 'input',
+            name: 'fakeForm',
+            label: '测试用条目',
+            show: !!_this.showConfig.fakeForm
           }
         ]
       }
     }
   },
   watch: {
+    'formData.fakeForm': function(val) {
+      this.updateProperties({ 'flowable:fakeForm': val })
+      console.log(val)
+    },
     'formData.userType': function(val, oldVal) {
       if (oldVal) {
         const types = ['assignee', 'candidateUsers', 'candidateGroups']
