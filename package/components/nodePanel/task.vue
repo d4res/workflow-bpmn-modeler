@@ -72,7 +72,11 @@ export default {
       executionListenerLength: 0,
       taskListenerLength: 0,
       hasMultiInstance: false,
-      formData: {}
+      formData: {},
+      activityNames: [
+        { label: '施肥准备', value: 'SFZB' },
+        { label: '收获', value: 'SH' }
+      ]
     }
   },
   computed: {
@@ -88,9 +92,10 @@ export default {
             rules: [{ required: true, message: 'Id 不能为空' }]
           },
           {
-            xType: 'input',
+            xType: 'select',
             name: 'name',
-            label: '节点名称'
+            label: '节点名称',
+            dic: _this.activityNames
           },
           {
             xType: 'input',
